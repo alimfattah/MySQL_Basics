@@ -1,0 +1,119 @@
+Create Your Database
+Tujuan : Mendefinisikan struktur dari sebuah tabel baru yang dinamakan 'students'
+
+Code Explanation:
+
+CREATE TABLE students (
+
+id INT PRIMARY KEY AUTO_INCREMENT,
+
+first_name VARCHAR(50) NOT NULL,
+
+last_name VARCHAR(50) NOT NULL,
+
+age INT,
+
+major VARCHAR(100)
+
+);
+
+
+
+Code Breakdown:
+
+1. `CREATE TABLE students`: Perintah ini membuat sebuah tabel bernama `students`.
+
+2. `id INT PRIMARY KEY AUTO_INCREMENT`:
+
+- `id`: sebuah kolom bernama `id` tersebut menyimpan bilangan integers.
+
+- `PRIMARY KEY`: memastikan setiap entry memiliki sebuah unique identifier.
+
+- `AUTO_INCREMENT`: Otomatis menambah nilai `id` untuk setiap baris baru.
+
+3. `first_name VARCHAR(50) NOT NULL`: menyimpan sebuah nama depan student dengan panjang maksimum 50 karakter.
+
+- `NOT NULL`: Berarti kolom ini tidak dapat dibiarkan kosong.
+
+4. `last_name VARCHAR(50) NOT NULL`: menyimpan nama akhir student
+
+5. `age INT`: menyimpan umur students sebagai satuan nomor (interger)
+
+6. `major VARCHAR(100)`: menyimpan jurusan student dengan panjang maksimum 100 karakter.
+
+
+
+
+
+Insert Data into the table.
+Tujuan: menambah beberapa sampel students kedalam tabel 'students'
+
+Code Explanation:
+
+INSERT INTO students (first_name, last_name, age, major) VALUES
+
+('Alice', 'Johnson', 22, 'Computer Science'),
+
+('Bob', 'Smith', 24, 'Mathematics'),
+
+('Charlie', 'Brown', 21, 'Physics');
+
+
+
+Code Breakdown:
+
+1. `INSERT INTO students`: Perintah ini menambah data baru ke dalam tabel 'students'.
+
+2. `(first_name, last_name, age, major)`: Mengarahkan dimana data dimasukan ke kolom tertentu secara spesifik.
+
+3. `VALUES`: Mengindikasikan data aktual untuk baris baru.
+
+- Baris pertama: Alice Johnson, 22 years old, majoring in Computer Science.
+
+- Baris kedua: Bob Smith, 24 years old, majoring in Mathematics.
+
+- Baris ketiga: Charlie Brown, 21 years old, majoring in Physics.
+
+
+
+
+
+Query the Data from the Table
+Tujuan: Menerima data yang telah dimasukan menggunakan query SQL sederhana.
+
+Code Explanation:
+
+SELECT * FROM students;
+
+Code Breakdown:
+
+- `SELECT *`: Memilih semua kolom dari tabel yang spesifik.
+
+- `FROM students`: Mengarahkan tabel yang akan kita ambil datanya.
+
+
+
+Try More Queries
+Experiment with a few more queries to get familiar with SQL.
+
+Query 1: Temukan semua students majoring in Computer Science
+
+SELECT * FROM students WHERE major = 'Computer Science';
+
+- Explanation: The `WHERE` clause filters rows to show only those with a major in Computer Science.
+
+
+
+Query 2: Retrieve only the first and last names of students
+
+SELECT first_name, last_name FROM students;
+
+- Explanation: This query selects only the `first_name` and `last_name` columns.
+
+
+
+Query 3: Sort students by age in ascending order
+
+SELECT * FROM students ORDER BY age ASC;
+
+- Explanation: The `ORDER BY` clause sorts the result by the `age` column in ascending ord
