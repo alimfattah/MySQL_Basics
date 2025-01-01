@@ -1,0 +1,38 @@
+Create Your Database
+Tujuan : Mendefinisikan struktur dari sebuah tabel baru yang dinamakan 'customers', 'products', 'orders'.
+
+CREATE TABLE customers(
+	CustomerID INT AUTO_INCREMENT PRIMARY KEY,
+    Name VARCHAR(100),
+    Email VARCHAR(100) UNIQUE,
+    Address VARCHAR(255)
+) ;
+
+
+CREATE TABLE products(
+	ProductID INT AUTO_INCREMENT PRIMARY KEY,
+    ProductName VARCHAR(100),
+    Price DECIMAL (10,2),
+    Stockquantity INT
+) ;
+
+
+CREATE TABLE orders(
+	OrderID INT AUTO_INCREMENT PRIMARY KEY,
+    CustomerID INT,
+    ProductID INT,
+    OrderDate DATE,
+    Quantity INT,
+    FOREIGN KEY (CustomerID) REFERENCES customers(CustomerID),
+	FOREIGN KEY (ProductID) REFERENCES products(ProductID)
+) ;
+
+INSERT INTO customers (Name, Email, Address) VALUES
+('john','john@example.com', '123 main st'),
+('ema','ema@example.com', '124 main st'),
+('sam','sam@example.com', '125 main st');
+
+INSERT INTO orders (CustomerID, ProductID, OrderDate, Quantity) VALUES
+(1,1, '2024-09-01', 1),
+(2,2, '2024-09-01', 2),
+(3,3, '2024-09-01', 3);
