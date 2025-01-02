@@ -36,3 +36,10 @@ INSERT INTO orders (CustomerID, ProductID, OrderDate, Quantity) VALUES
 (1,1, '2024-09-01', 1),
 (2,2, '2024-09-01', 2),
 (3,3, '2024-09-01', 3);
+
+
+SELECT orders.OrderID, customers.Name, products.ProductName, orders.OrderDate, orders.Quantity FROM orders
+JOIN customers ON orders.CustomerID = customers.CustomerID
+JOIN products ON orders.ProductID = products.ProductID
+
+
