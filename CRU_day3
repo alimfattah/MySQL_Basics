@@ -1,0 +1,180 @@
+Create the `Customers` Table:
+
+CREATE TABLE Customers (
+
+       CustomerID INT AUTO_INCREMENT PRIMARY KEY,
+
+       FirstName VARCHAR(50),
+
+       LastName VARCHAR(50),
+
+       City VARCHAR(50),
+
+       PhoneNumber VARCHAR(15)
+
+   );
+
+
+
+
+
+Create the `Orders` Table:
+
+CREATE TABLE Orders (
+
+       OrderID INT AUTO_INCREMENT PRIMARY KEY,
+
+       CustomerID INT,
+
+       OrderDate DATE,
+
+       TotalAmount DECIMAL(10, 2),
+
+       FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
+
+   );
+
+
+
+
+
+Insert Sample Data into the `Customers` Table:
+
+INSERT INTO Customers (FirstName, LastName, City, PhoneNumber)
+
+   VALUES
+
+       ('John', 'Doe', 'New York', '555-1234'),
+
+       ('Jane', 'Smith', 'Los Angeles', '555-5678'),
+
+       ('David', 'Johnson', 'Chicago', '555-9876'),
+
+       ('Mary', 'Brown', 'Houston', '555-4321');
+
+
+
+
+
+Insert Sample Data into the `Orders` Table:
+
+INSERT INTO Orders (CustomerID, OrderDate, TotalAmount)
+
+   VALUES
+
+       (1, '2024-09-10', 100.50),
+
+       (2, '2024-09-12', 200.75),
+
+       (3, '2024-09-13', 150.00),
+
+       (1, '2024-09-14', 250.00);
+
+
+
+
+
+===========================================================
+
+
+
+Query to Select All Data from `Customers`:
+
+SELECT * FROM customers;
+
+
+
+Query to Select All Data from `Orders`:
+
+SELECT * FROM orders;
+
+
+
+Use WHERE Clauses for Filtering Data:
+
+SELECT FirstName, LastName, City FROM customers
+
+WHERE City = 'New York';
+
+
+
+
+
+Use ORDER BY for Sorting Results
+
+Query to Select Orders Greater Than $150:
+
+SELECT OrderID, TotalAmount
+
+FROM orders
+
+WHERE TotalAmount > 150;
+
+
+
+Query to Sort Orders by Total Amount in Descending Order:
+
+SELECT FirstName, LastName, City
+
+FROM customers
+
+ORDER BY LastName
+
+
+
+
+
+=====================================================
+
+Use SELECT with Aggregate Functions
+
+Query to Count the Number of Orders:
+
+SELECT COUNT(*) AS NumberOfOrders FROM orders;
+
+
+
+
+
+Query to Get the Total Sales:
+
+SELECT SUM(TotalAmount) AS TotalSales
+
+FROM orders;
+
+
+
+Query to Get the Average Order Value
+
+SELECT AVG(TotalAmount) AS AverageOrderValue
+
+FROM orders;
+
+
+
+Join Tables:
+
+SELECT customers.FirstName, customers.LastName, orders.OrderID, orders.TotalAmount
+
+FROM customers
+
+JOIN orders ON customers.CustomerID = orders.CustomerID;
+
+
+
+
+
+Filter and Sort Joined Data:
+
+SELECT customers.FirstName, customers.LastName, orders.OrderID, orders.TotalAmount
+
+FROM customers
+
+JOIN orders ON customers.CustomerID = orders.CustomerID
+
+WHERE orders.TotalAmount > 150
+
+ORDER BY orders.TotalAmount DESC;
+
+
+
