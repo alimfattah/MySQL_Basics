@@ -1,0 +1,42 @@
+CREATE TABLE Employees(
+	EmployeeID INT AUTO_INCREMENT PRIMARY KEY,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    Department VARCHAR(50),
+    City VARCHAR(50),
+    Salary DECIMAL(10,2),
+    HireDate DATE
+);
+
+
+INSERT INTO employees(FirstName,LastName, Department,City,Salary,HireDate)
+VALUES
+	('John','Doe','Sales','New York', 75000, '2021-02-15'),
+    ('Jane','Smith','HR','Los Angeles', 60000, '2020-05-10'),
+    ('David','Johnson','IT','Chicago', 92000, '2019-09-23'),
+    ('Emily','Davis','Sales','New York', 82000, '2022-02-10'),
+    ('Michael','Brown','Marketing','San Fransisco', 60000, '2023-03-01'),
+    ('Sarah','Wilson','HR','Chicago', 70000, '2021-08-01'),
+    ('Daniel','Martinez','IT','New York', 100000, '2018-12-18'),
+    ('Laura','Garcia','Sales','Los Angeles', 64000, '2020-11-05');
+
+SELECT FirstName, LastName, Department
+FROM employees
+ORDER BY LastName ASC;
+
+SELECT FirstName, LastName, Department
+FROM employees
+ORDER BY LastName DESC;
+
+SELECT FirstName, LastName, Department, Salary
+FROM employees
+ORDER BY Department ASC, Salary DESC;
+
+SELECT FirstName, LastName, Salary
+FROM employees
+ORDER BY  Salary ASC;
+
+SELECT FirstName, LastName, Salary
+FROM employees
+WHERE Department ='IT'
+ORDER BY  Salary DESC;
