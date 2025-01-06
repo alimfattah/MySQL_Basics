@@ -1,0 +1,50 @@
+CREATE TABLE Orders (
+	OrderID INT PRIMARY KEY,
+    CustomerName VARCHAR(100),
+    TotalAmount DECIMAL(10,2),
+    orderDate DATE,
+    Status VARCHAR(50)
+);
+
+
+INSERT INTO Orders (OrderID, CustomerName, TotalAmount, OrderDate, Status)
+VALUES
+(1,'John Doe', 25.50, '2024-09-01', 'Complete'),
+(2,'Jane Smith', 40.00, '2024-09-02', 'Pending'),
+(3,'Mike Johnson', 55.75, '2024-09-03', 'Complete'),
+(4,'Linda Green', 12.00, '2024-09-04', 'Complete'),
+(5,'David Moore', 75.25, '2024-09-05', 'Pending'),
+(6,'Michael Lee', 22.50, '2024-09-06', 'Complete'),
+(7,'Sarah Brown', 80.00, '2024-09-07', 'Complete'),
+(8,'John Hawk', 100.00, '2024-09-08', 'Complete');
+
+SELECT COUNT(*) AS TotalOrders
+FROM orders;
+
+SELECT SUM(TotalAmount) AS TotalSales
+FROM orders
+
+SELECT AVG(TotalAmount) AS AverageOrderValue
+FROM orders
+
+SELECT MAX(TotalAmount) AS LargestOrder
+FROM orders
+
+SELECT MIN(TotalAmount) AS SmallestOrder
+FROM orders
+
+SELECT COUNT(*) AS CompletedOrder
+FROM orders
+WHERE Status = 'Complete';
+
+SELECT SUM(TotalAmount) AS TotalCompletedOrder
+FROM orders
+WHERE Status = 'Complete';
+
+SELECT CustomerName, SUM(TotalAmount) AS TotalSalesbyCustomer
+FROM orders
+GROUP BY CustomerName;
+
+SELECT Status, AVG(TotalAmount) AS averageOrderValuebyStatus
+FROM orders
+GROUP BY Status;
