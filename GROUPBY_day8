@@ -1,0 +1,43 @@
+CREATE TABLE Orders (
+	OrderID INT AUTO_INCREMENT PRIMARY KEY,
+    CustomerName VARCHAR(255),
+    Product VARCHAR(255),
+    Quantity INT,
+    Price DECIMAL (10,2),
+    OrderDate DATE
+);
+
+INSERT INTO Orders (CustomerName, Product, Quantity, Price, OrderDate)
+VALUES 
+('John Doe', 'Laptop',1,1200.00,'2024-10-01'),
+('Jane Smith', 'Laptop',2,2400.00,'2024-10-01'),
+('John Doe', 'Smartphone',3,1500.00,'2024-10-02'),
+('Mike Johnson', 'Tablet',1,300.00,'2024-10-03'),
+('Sarah Brown', 'Smartwatch',1,200.00,'2024-10-03'),
+('Jane Smith', 'Smartphone',2,1000.00,'2024-10-03'),
+('Sarah Brown', 'Laptop',1,1200.00,'2024-10-04'),
+('John Doe', 'Smartwatch',1,200.00,'2024-10-05'),
+('Mike Johnson', 'Smartphone',2,1000.00,'2024-10-06');
+
+
+
+SELECT Product, SUM(Price * Quantity) AS TotalSpent
+FROM orders
+GROUP BY Product;
+
+SELECT CustomerName, SUM(Price * Quantity) AS TotalSpent
+FROM orders
+GROUP BY CustomerName;
+
+SELECT Product, AVG(Price) AS AvgPrice
+FROM orders
+GROUP BY Product;
+
+SELECT Product, COUNT(*) AS TotalOrders
+FROM orders
+GROUP BY Product;
+
+ELECT Product, SUM(Price * Quantity) AS TotalRevenue
+FROM orders
+GROUP BY Product
+HAVING TotalRevenue > 2000;
