@@ -41,3 +41,11 @@ ELECT Product, SUM(Price * Quantity) AS TotalRevenue
 FROM orders
 GROUP BY Product
 HAVING TotalRevenue > 2000;
+
+SELECT OrderDate, COUNT(OrderID) AS OrdersPerDay
+FROM orders
+GROUP BY CustomerName, OrderDate;
+
+SELECT CustomerName, MONTH(OrderDate) AS OrderMonth, SUM(Price*Quantity) AS TotalSpent
+FROM orders
+GROUP BY CustomerName, OrderMonth;
