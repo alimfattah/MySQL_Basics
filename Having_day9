@@ -1,0 +1,50 @@
+CREATE TABLE Sales (
+    SaleID INT PRIMARY KEY,
+    ProductName VARCHAR(50),
+    CustomerName VARCHAR(50),
+    Quantity INT,
+    Price DECIMAL(10,2),
+    SaleDate DATE
+    );
+
+INSERT INTO Sales (SaleID, ProductName, CustomerName, Quantity, Price, SaleDate)
+VALUES
+(1,'Laptop', 'Alice', 2, 1000.00, '2024-09-01'),
+(2,'Mouse', 'Bob', 10, 25.00, '2024-09-03'),
+(3,'Keyboard', 'Alice', 5, 45.00, '2024-09-03'),
+(4,'Laptop', 'Charlie', 1, 1000.00, '2024-09-05'),
+(5,'Monitor', 'Alice', 3, 300.00, '2024-09-10'),
+(6,'Mouse', 'David', 4, 25.00, '2024-09-12'),
+(7,'Keyboard', 'Eve', 7, 45.00, '2024-09-15'),
+(8,'Monitor', 'Frank', 2, 300.00, '2024-09-17'),
+(9,'Laptop', 'George', 1, 1000.00, '2024-09-20'),
+(10,'Mouse', 'Hannah', 3, 25.00, '2024-09-22');
+
+SELECT ProductName, SUM(Price * Quantity) AS TotalRevenue
+FROM sales
+GROUP BY ProductName;
+
+SELECT ProductName, SUM(Price * Quantity) AS TotalRevenue
+FROM sales
+GROUP BY ProductName
+HAVING SUM(Price*Quantity)>500;
+
+SELECT CustomerName, COUNT(SaleID) AS TotalSales
+FROM sales
+GROUP BY CustomerName;
+
+SELECT CustomerName, COUNT(SaleID) AS TotalSales
+FROM sales
+GROUP BY CustomerName
+HAVING COUNT(SaleID) >2;
+
+SELECT ProductName, SUM(Quantity) AS TotalQuantity
+FROM sales
+GROUP BY ProductName
+HAVING SUM(Quantity) > 10;
+
+SELECT ProductName, SUM(Price*Quantity) AS TotalRevenue
+FROM sales
+GROUP BY ProductName
+HAVING SUM(Price*Quantity) > 500
+ORDER BY TotalRevenue DESC;
