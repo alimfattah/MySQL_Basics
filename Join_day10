@@ -1,0 +1,64 @@
+CREATE TABLE Members (
+    MemberID INT PRIMARY KEY,
+    Name VARCHAR(50),
+    JoinDate DATE
+    );
+
+CREATE TABLE Classes (
+    ClassID INT PRIMARY KEY,
+    ClassName VARCHAR(50),
+    Instructor VARCHAR(50)
+    ); 
+
+
+CREATE TABLE Enrollments (
+    EnrollmentID INT PRIMARY KEY,
+    MemberID INT,
+    ClassID INT,
+    EnrollmentDate DATE,
+    FOREIGN KEY (MemberID) REFERENCES Members(MemberID),
+    FOREIGN KEY (ClassID) REFERENCES Classes(ClassID)
+    ); 
+
+INSERT INTO members(MemberID, Name, JoinDate)
+VALUES(1,'Alice Johnson','2023-01-05'),
+		  (2,'Bob Smith','2023-02-15'),
+      (3,'Charlie Green','2023-03-22');
+
+INSERT INTO classes(ClassID, ClassName, Instructor)
+VALUES(1,'Yoga','Emily Carter'),
+		  (2,'Spin','James Lee'),
+      (3,'Pilates','Samantha Brown');
+
+INSERT INTO enrollments(EnrollmentID,MemberID, ClassID, EnrollmentDate)
+VALUES(1,1,1,'2023-04-01'),
+		  (2,2,2,'2023-04-03'),
+      (3,3,1,'2023-04-05'),
+      (4,1,3,'2023-04-07');
+
+SELECT members.Name, enrollments.EnrollmentDate
+FROM members
+INNER JOIN enrollments
+ON members.MemberID = enrollments.MemberID
+
+SELECT members.Name, classes.ClassName, classes.Instructor, enrollments.EnrollmentDate
+FROM members
+INNER JOIN enrollments
+ON members.MemberID = enrollments.MemberID
+INNER JOIN classes
+ON enrollments.ClassID = classes.ClassID
+
+SELECT members.Name, classes.ClassName, enrollments.EnrollmentDate
+FROM members
+LEFT JOIN enrollments
+ON members.MemberID = enrollments.MemberID
+LEFT JOIN classes
+ON enrollments.ClassID = classes.ClassID
+
+SELECT members.Name, classes.ClassName, enrollments.EnrollmentDate
+FROM members
+INNER JOIN enrollments
+ON members.MemberID = enrollments.MemberID
+INNER JOIN classes
+ON enrollments.ClassID = classes.ClassID
+WHERE classes.ClassName = 'Yoga';
