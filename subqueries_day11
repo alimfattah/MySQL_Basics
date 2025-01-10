@@ -1,0 +1,67 @@
+CREATE TABLE Books(
+	BookID INT PRIMARY KEY,
+    Title VARCHAR(255),
+    Author VARCHAR(255),
+    Genre VARCHAR(255),
+    Price DECIMAL(10,2),
+    CopiesSold INT
+);
+
+CREATE TABLE Customers(
+	CustomerID INT PRIMARY KEY,
+    Name VARCHAR(255),
+    Email VARCHAR(255)
+);
+
+CREATE TABLE Orders (
+    OrderID INT PRIMARY KEY,
+    CustomerID INT,
+    BookID INT,
+    OrderDate DATE,
+    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID),
+    FOREIGN KEY (BookID) REFERENCES Books(BookID)
+    ); 
+
+    INSERT INTO Books (BookID, Title, Author, Genre, Price, CopiesSold)
+VALUES (1, 'The Great Escape', 'John Doe', 'Thriller', 15.99, 12000),
+(2, 'Mystery of the Night', 'Jane Smith', 'Mystery', 20.99, 8000),
+(3, 'The Learning Curve', 'Sarah Lee', 'Non-Fiction', 10.99, 3000),
+(4, 'Into the Wild', 'John Doe', 'Adventure', 25.00, 15000);
+
+ INSERT INTO Customers (CustomerID, Name, Email)
+VALUES (1, 'Alice Johnson', 'alice@mail.com'),
+(2, 'Bob Brown', 'bob@mail.com'),
+(3, 'Carol White', 'carol@mail.com');
+
+
+INSERT INTO Orders (OrderID, CustomerID, BookID, OrderDate)
+VALUES (1, 1, 1, '2023-09-01'),
+(2, 2, 2, '2023-09-02'),
+(3, 3, 1, '2023-09-03'),
+(4, 1, 4, '2023-09-04'),
+(5, 2, 4, '2023-09-05');
+
+
+SELECT Title
+FROM books
+WHERE CopiesSold = (SELECT MAX(CopiesSold) FROM books);
+
+SELECT Title
+FROM books
+WHERE BookID IN (SELECT BookID FROM books WHERE CopiesSold > 10000);
+
+
+SELECT Name
+FROM customers c
+WHERE 1 <(SELECT COUNT(*)
+          FROM orders o
+          WHERE o.CustomerID = c.CustomerID);
+          
+
+SELECT Name
+FROM customers 
+WHERE CustomerID IN (SELECT CustomerID FROM orders
+                     WHERE BookID IN (SELECT BookID
+                                      FROM books
+                                      WHERE Author ='John Doe'
+                                      AND CopiesSold >10000));
