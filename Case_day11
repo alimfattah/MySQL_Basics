@@ -1,0 +1,63 @@
+Database Bookstore
+
+CREATE TABLE Books (
+	BookID INT PRIMARY KEY,
+    Title VARCHAR(100),
+    Genre VARCHAR(50),
+    Price DECIMAL(5,2),
+    Stock INT
+);
+
+
+CREATE TABLE Sales (
+	SaleID INT PRIMARY KEY,
+    BookID INT,
+    Quantity INT,
+    SaleDate DATE,
+    CustomerID INT
+);
+
+CREATE TABLE Customers (
+	CustomerID INT PRIMARY KEY,
+    CustomerName VARCHAR(100),
+    Visit INT
+);
+
+
+INSERT INTO books (BookID, Title, Genre, Price, Stock)
+VALUES
+(1, 'The Art of SQL', 'Technology', 45.50, 20),
+(2, 'SQL for Data Scientists', 'Technology', 39.99, 15),
+(3, 'Moby Dick', 'Fiction', 12.50, 50),
+(4, 'To Kill a Mockingbird', 'Fiction', 18.99, 30);
+
+INSERT INTO customers (CustomerID, CustomerName, Visit)
+VALUES
+(101, 'Alice Johnson',12),
+(102, 'Bob Smith', 6),
+(103, 'Carol Davis', 3);
+
+SELECT CustomerName, Visit,
+CASE
+WHEN Visit > 10 THEN 'VIP'
+WHEN Visit BETWEEN 5 AND 10 THEN 'Regular'
+ELSE 'New Customer'
+END AS CustomerCategory
+FROM customers
+
+SELECT Title, Price,
+CASE
+WHEN Price > 40 THEN 'High Price - 10% discount'
+WHEN Price BETWEEN 20 AND 40 THEN 'Medium Price - 5% discount'
+ELSE 'Low Price - No discount'
+END AS PriceCategory
+FROM books
+
+SELECT Title, Genre, Price
+FROM books
+ORDER BY
+CASE
+WHEN Genre = 'Fiction' THEN 1
+WHEN Genre = 'Technology' THEN 2
+ELSE 3
+END;
