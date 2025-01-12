@@ -1,0 +1,33 @@
+DATABASE Employee
+
+CREATE Table Employees(
+	EmployeeID INT PRIMARY KEY,
+    Name VARCHAR(100),
+    Position VARCHAR(50),
+    MentorID INT
+);
+
+INSERT INTO Employees (EmployeeID, Name, Position, MentorID)
+VALUES
+(1,'Alice','Manager', NULL),
+(2,'Bob','Developer', 1),
+(3,'Charlie','Developer', 1),
+(4,'David','Designer', 2),
+(5,'Eva','Designer', 3),
+(6,'Frank','Intern', 2);
+
+SELECT e1.Name As Mentee, e2.Name As Mentor
+FROM employees e1
+JOIN employees e2
+ON e1.MentorID = e2.EmployeeID;
+
+SELECT Name
+FROM employees
+WHERE MentorID IS NULL;
+
+
+SELECT e1.Name AS Employee1, e2.Name AS employee2, e1.MentorID
+FROM employees e1
+JOIN employees e2
+ON e1.MentorID = e2.MentorID
+WHERE e1.EmployeeID != e2.EmployeeID;
