@@ -1,0 +1,47 @@
+database = book&music
+
+CREATE table books
+(CustomerID INT PRIMARY KEY,
+ CustomerName VARCHAR(50),
+ PurchaseDate DATE,
+ PurchaseAmount DECIMAL(10,2)
+  );
+
+CREATE table Music
+(CustomerID INT,
+ CustomerName VARCHAR(100),
+ PurchaseDate DATE,
+ PurchaseAmount DECIMAL(10,2)
+  );
+
+
+INSERT INTO books( CustomerID, CustomerName, PurchaseDate, PurchaseAmount)
+VALUES
+	(1, 'John Doe', '2024-01-15',25.50),
+    (2, 'Alice Smith', '2024-01-18',12.75),
+    (3, 'Emma Johnson', '2024-01-20',40.00);
+
+INSERT INTO music(CustomerID,CustomerName,PurchaseDate,PurchaseAmount)
+VALUES
+(3,'Emma Johnson','2024-01-22', 15.00),
+(4,'Bob Martin','2024-01-23', 30.00),
+(5,'Charlie Brown','2024-01-25', 20.00);
+
+
+SELECT CustomerName, PurchaseDate, PurchaseAmount FROM books
+UNION
+SELECT CustomerName, PurchaseDate, PurchaseAmount FROM music
+
+SELECT CustomerName, PurchaseDate, PurchaseAmount FROM books
+UNION ALL
+SELECT CustomerName, PurchaseDate, PurchaseAmount FROM music
+
+SELECT CustomerName, PurchaseDate, PurchaseAmount, 'Books' AS Store FROM books
+UNION 
+SELECT CustomerName, PurchaseDate, PurchaseAmount, 'Music' AS Store FROM music
+
+SELECT CustomerName, PurchaseDate, PurchaseAmount, 'Books' AS Store FROM books
+WHERE PurchaseDate BETWEEN '2024-01-01' AND '2024-01-31'
+UNION 
+SELECT CustomerName, PurchaseDate, PurchaseAmount, 'Music' AS Store FROM music
+WHERE PurchaseDate BETWEEN '2024-01-01' AND '2024-01-31'
