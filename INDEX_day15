@@ -1,0 +1,39 @@
+Database = Indexdemo
+
+CREATE TABLE orders
+(OrderID INT AUTO_INCREMENT PRIMARY KEY,
+ CustomerID INT,
+ OrderDate DATE,
+ Amount DECIMAL(10,2),
+ ProductID INT,
+ Status VARCHAR(20)
+    );
+
+INSERT INTO orders(CustomerID, OrderDate, Amount, ProductID, Status)
+VALUES
+(1, '2023-01-15',100.50,1001,'Completed'),
+(2, '2023-02-03',250.00,1002,'Pending'),
+(3, '2023-02-05',300.75,1001,'Completed'),
+(4, '2023-03-01',450.50,1003,'Shipped'),
+(5, '2023-03-15',50.75,1004,'Cancelled');
+
+CREATE INDEX idx_customer ON orders (CustomerID)
+
+
+SELECT * FROM orders WHERE CustomerID = '1'
+
+
+DROP INDEX idx_customer ON orders;
+EXPLAIN SELECT * FROM orders WHERE CustomerID = '1';
+
+
+CREATE INDEX idx_customer ON orders (CustomerID);
+EXPLAIN SELECT * FROM orders WHERE CustomerID = '1';
+
+
+CREATE INDEX idx_customer_orderdate ON orders (CustomerID, OrderDate);
+
+
+SELECT * FROM orders WHERE CustomerID = '1' AND OrderDate >= '2023-01-01';
+
+SHOW INDEXES FROM orders;
