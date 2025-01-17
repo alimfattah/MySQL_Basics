@@ -1,0 +1,73 @@
+Database= CoffeShop
+
+CREATE TABLE Orders(
+	OrderID INT PRIMARY KEY,
+    CustomerName VARCHAR(100),
+    CustomerAddress VARCHAR(255),
+    OrderDate DATE,
+    ItemsPurchased VARCHAR(255),
+    TotalAmount DECIMAL(10,2)
+);
+
+INSERT INTO Orders(OrderID, CustomerName, CustomerAddress, OrderDate, ItemsPurchased, TotalAmount) VALUES
+(1,'John Doe', '123 Main St', '2023-10-01', 'Coffee,Bagel', 8.50),
+(2,'Jane Smith', '456 Elm St', '2023-10-01', 'Latte, Muffin', 9.00),
+(3,'John Doe', '123 Main St', '2023-10-02', 'Espresso', 3.50),
+(4,'Mary Johnson', '789 Pine St', '2023-10-02', 'Cappuccino, Cookie', 5.00);
+
+CREATE TABLE Orders_1NF (
+    OrderID INT PRIMARY KEY,
+    CustomerName VARCHAR(100),
+    CustomerAddress VARCHAR(255),
+    OrderDate DATE
+    );
+
+INSERT INTO Orders_1NF (OrderID, CustomerName, CustomerAddress, OrderDate)
+VALUES
+(1,'John Doe', '123 Main St', '2023-10-01'),
+(2,'Jane Smith', '456 Elm St', '2023-10-01'),
+(3,'John Doe', '123 Main St', '2023-10-02'),
+(4,'Mary Johnson', '789 Pine St', '2023-10-02');
+
+CREATE TABLE OrderItems (
+    OrderItemID INT PRIMARY KEY AUTO_INCREMENT,
+    OrderID INT,
+    ItemName VARCHAR(100),
+    FOREIGN KEY (OrderID) REFERENCES Orders_1NF(OrderID)
+    );
+
+INSERT INTO OrderItems (OrderID, ItemName) VALUES
+(1,'Coffee'),
+(1,'Bagel'),
+(2,'Latte'),
+(2,'Muffin'),
+(3,'Espresso'),
+(4,'Cappuccino'),
+(4,'Cookie');
+
+
+CREATE TABLE Customers(
+    CustomerID INT PRIMARY KEY AUTO_INCREMENT,
+    CustomerName VARCHAR(100),
+    CustomerAddress VARCHAR(255)
+);
+
+INSERT INTO Customers (CustomerName, CustomerAddress)
+VALUES
+('John Doe', '123 Main St'),
+('Jane Smith', '456 Elm St'),
+('Mary Johnson', '789 Pine St');
+
+
+ALTER TABLE orders_1nf
+	ADD CustomerID INT,
+    ADD FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID);
+
+UPDATE orders_1nf SET CustomerID = 1 WHERE CustomerName = 'John Doe';
+UPDATE orders_1nf SET CustomerID = 2 WHERE CustomerName = 'Jane Smith';
+UPDATE orders_1nf SET CustomerID = 3 WHERE CustomerName = 'Mary Johnson';
+
+
+SELECT * FROM Customers;
+SELECT * FROM orders_1nf;
+SELECT * FROM OrderItems;
