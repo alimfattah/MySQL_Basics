@@ -1,0 +1,14 @@
+DDL(Data Definition Language) 
+SQL commands that are used to define the structure of the database objects
+--CREATE   = Create Database, and its tables, columns and indexes
+--Alter    = Alter the structure of the database objects - add or remove columns, indexes, etc
+--Drop     = delete tables.Indexes and even entire database.
+--Rename   = rename a table
+--Truncate = Clear out the contents of a table. Effectivelu the same as deleting and re-recreating the table.
+
+DML(Data Manipulation Language)
+SQL commands that are used to manipulate the data
+--Select   = Query the database to retrieve rows of data
+--Insert   = Insert data into a table
+--Update   = Change the data in columns of a table 
+--Delete   = Delete rows in a table
