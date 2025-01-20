@@ -1,0 +1,45 @@
+Numeric Data types
+1. INT
+  Whole Number(e.g quantity in stock)
+  auto-generated primary keys are also INT
+2. Float(p)
+    Decimal Number Approximate
+3. DECIMAL(M,D)
+  Decimal Number Precise 
+  DECIMAL(5,2) -> -999.99 to 999.99
+  DECIMAL(4,3) -> -9.999 to 9.999
+Non-numeric Data type
+4. CHAR(N)
+  fixed length string,  (can contain letters, numbers, and special characters). The size parameter specifies 
+  the column length in characters - can be from 0 to 255. Default is 1
+5. VARCHAR(N)
+  variable length string, (can contain letters, numbers, and special characters). The size parameter specifies 
+  the maximum string length in characters - can be from 0 to 65535
+6. ENUM(list of values)
+  ENUM('xs','s','m','l','xl','xxl')
+7. BOOLEAN
+  True or False valuses
+Date and Time Data Type
+8. DATE
+  DATE(YYYY-MM-DD): 1996-05-23
+9. DATETIME
+  DATETIME(YYYY-MM-DD HH:MM:SS.ssssss): 1978-11-22 12:30:00
+10. TIME
+  TIME(HHH:MM:SS.ssssss): 245:15:10.345
+11. YEAR
+  YEAR(YYYY): 2025
+12. Null
+  A. Missing or Unknown
+  Indicates that no value has been stored in the column
+  B. Not 0 or ''
+  Null is not the same as zero, ir ab empty string
+  C. Operators
+  Cant use =,< or > operators
+  Instead, we have:
+  is NULL
+  is NOT NULL
+  and the IFNULL() function
+  D. Examples
+  Where last_name is NULL;
+  Where referee is NOT NULL; 
+
