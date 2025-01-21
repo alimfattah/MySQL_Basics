@@ -1,0 +1,10 @@
+1. Key
+    Identifier for a row in a table. Every row has a different key. 
+a.Primary Key
+  A column (or set of columns). that uniquely identifies a row within a table. A primary key must be UNIQUE. No two row can share the same primary key values
+  Null primary keys are not allowed. Tables can have several keys, but there can be one primary key each table.
+b.Foreign Key
+  A key column( or set of columns) that matches the primary key in the parent table. Purpose to links 2 tables together. this FK in the child table links to PK
+  in the parent table. Null foreign keys are allowed. The child table can be linked to parent table later
+2.Index
+    Ordered collection of keys. Used to allow fast searching and when sorting the rows. Every entry in an index only appears once
